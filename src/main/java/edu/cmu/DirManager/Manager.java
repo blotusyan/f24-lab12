@@ -14,16 +14,16 @@ public class Manager {
      */
     public int newDirectory(String path) {
         if (dirOps == null) {
-            return -3; // dirOps is not initialized
+            throw new IllegalArgumentException("Cannot find DirOps Object");
         }
 
         if (dirOps.checkDirectoryExists(path)) {
-            return -1; // Directory already exists
+            throw new IllegalArgumentException("Dir Already Exist");
         } else if (!dirOps.checkPathValid(path)) {
-            return -2; // Invalid path
+            throw new IllegalArgumentException("Invalid Path");
         } else {
             dirOps.createDirectory(path); // Create the directory
-            return 0; // Success
+            return 1; // Success
         }
     }
 }
